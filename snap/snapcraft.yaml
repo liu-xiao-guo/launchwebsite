@@ -1,0 +1,24 @@
+name: google
+version: "1"
+summary: this is a test program for launching a website using browser
+description: |
+     Launch google website using xdg-open
+grade: stable
+confinement: strict
+architectures: [amd64]
+
+apps:
+   google:
+     command: run.sh "http://www.google.com"
+     plugs: [network, network-bind, x11, home, unity7, gsettings]
+
+parts:
+   files:
+    plugin: dump
+    source: scripts
+    organize:
+     run.sh: bin/run.sh
+
+   integration:
+    plugin: nil
+    after: [desktop-gtk2]
